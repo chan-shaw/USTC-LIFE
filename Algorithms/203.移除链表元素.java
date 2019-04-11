@@ -33,14 +33,16 @@ class Solution {
         ListNode header = new ListNode(-1);
         header.next = head;
 
+        ListNode preNode = header;
+        ListNode currrent = head;
 
-        ListNode currrent = header;
-
-        while (currrent.next != null){
-            if (currrent.next.val == val){
-                currrent.next = currrent.next.next;
-            }else {
+        while (currrent != null){
+            if (currrent.val == val){
+                preNode.next = currrent.next;
                 currrent = currrent.next;
+            }else {
+                 preNode = preNode.next;
+                 currrent = currrent.next;
             }
         }
         return header.next;
