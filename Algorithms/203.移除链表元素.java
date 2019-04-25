@@ -33,8 +33,8 @@ class Solution {
         ListNode header = new ListNode(-1);
         header.next = head;
 
-        ListNode preNode = header;
-        ListNode currrent = head;
+        ListNode preNode = header;  //前一个节点
+        ListNode currrent = head;   //遍历的当前节点
 
         while (currrent != null){
             if (currrent.val == val){

@@ -47,12 +47,12 @@ class Solution {
         if (index == word.length()) return true;
         if (row < 0 || row >= board.length || column < 0 || column >= board[0].length) return false;
         if (board[row][column] != word.charAt(index)) return false;
-        board[row][column] <<= 1;
+        board[row][column] <<= 1;   //还原
         boolean result = dfs(board, word, row+1, column, index+1)||
                 dfs(board, word, row, column+1, index+1)||
                 dfs(board, word, row-1, column, index+1)||
                 dfs(board, word, row, column-1, index+1);
-        board[row][column] >>= 1;
+        board[row][column] >>= 1;   //标记已经查找过
         return result;
     }
 }
