@@ -1,0 +1,9 @@
+/root/Downloads/clion-2018.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /root/Documents/ICMP
+-- Found PCAP: /usr/lib/x86_64-linux-gnu/libpcap.so  
+-- Performing Test PCAP_LINKS_SOLO
+-- Performing Test PCAP_LINKS_SOLO - Success
+-- Looking for pcap_get_pfring_id
+-- Looking for pcap_get_pfring_id - not found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/Documents/ICMP/cmake-build-debug

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/Documents/ICMP/main.c
+pcap.h
+-
+time.h
+-
+stdlib.h
+-
+stdio.h
+-
+netinet/in.h
+-
+sys/socket.h
+-
+unistd.h
+-
+string.h
+-
+arpa/inet.h
+-
+
