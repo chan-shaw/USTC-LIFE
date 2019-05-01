@@ -119,5 +119,5 @@ static void rooty_exit(void)
 
 
 MODULE_LICENSE("GPL");
-module_init(filter_init);
-module_exit(filter_exit);
+module_init(rooty_init);
+module_exit(rooty_exit);
