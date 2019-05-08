@@ -334,9 +334,9 @@ root@kali:~/Documents/rootkit# grep rooty /proc/kallsyms
 
 ### 2.1 系统调用
 
-​	了解了系统调用之后，我们才知道操作系统实际的运行方式以及`rootkit`工作的基本要求，在这里不会赘述如何实现它，只会加德纳的概述一下它们是什么。系统调用是程序和内核服务交互的方式。它们涵盖了进程管理，文件管理，设备管理，信息管理，通信（内核调度）的所有操作。在保护模式下，内核决定了一组系统调用以及其相关实现。所以系统调用号是不可逆的，而有关系统调用的定义存储在` /usr/include/x86_64-linux-gnu/asm/unistd_64.h `中，这里截取前面几个简单的看一下:
+​	了解了系统调用之后，我们才知道操作系统实际的运行方式以及`rootkit`工作的基本要求，在这里不会赘述如何实现它，只会j简单的概述一下它们是什么。系统调用是程序和内核服务交互的方式。它们涵盖了进程管理，文件管理，设备管理，信息管理，通信（内核调度）的所有操作。在保护模式下，内核决定了一组系统调用以及其相关实现。所以系统调用号是不可逆的，而有关系统调用的定义存储在` /usr/include/x86_64-linux-gnu/asm/unistd_64.h `中，这里截取前面几个简单的看一下:
 
-```shell
+```c
 #ifndef _ASM_X86_UNISTD_64_H
 #define _ASM_X86_UNISTD_64_H 1
 
@@ -679,10 +679,6 @@ asmlinkage long my_getdents(unsigned int fd, struct linux_dirent __user *dirp,
     return value;
 }
 ```
-
-## 3 基于VFS的rootkit
-
-### 3.1 Virtual File Systems(VFS)
 
 ## 参考文献
 

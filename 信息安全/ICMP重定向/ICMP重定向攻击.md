@@ -695,7 +695,7 @@ int main(int argc, char * argv[]){
 
 
 
-## 5 实验代码：
+## 5 实验代码
 
 实验代码：
 
@@ -872,14 +872,14 @@ void parseIPHeader(const u_char *ip_packet)
     {
         //抓到被攻击者的数据包！
         //printf("find!\n");
-        flag = 1;
+        
         int count=0;
         while(1)
         {
             int sockfd,res;
             int one = 1;
             int *ptr_one = &one;
-            //printf("here!\n");
+            
             //构造的是ICMP报文
             if((sockfd = socket(AF_INET,SOCK_RAW,IPPROTO_ICMP))<0)
             {
